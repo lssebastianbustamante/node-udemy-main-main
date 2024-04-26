@@ -33,6 +33,12 @@ const getTour = (req, res) => {
 
   const tour = tours.find((el) => el.id === id);
 
+  if (isNaN(id)) {
+    return res.status(404).json({
+      status: 'invalid',
+      message: 'Id is not number'
+    })
+  }
   if (!tour) {
     return res.status(404).json({
       status: 'fail',
