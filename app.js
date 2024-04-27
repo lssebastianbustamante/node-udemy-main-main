@@ -33,11 +33,11 @@ const getTour = (req, res) => {
 
   const tour = tours.find((el) => el.id === id);
 
-  if (!isNaN(id)) {
+  if (isNaN(id)) {
     return res.status(404).json({
       status: 'invalid',
-      message: 'Id is not number'
-    })
+      message: 'Id is not number',
+    });
   }
   if (!tour) {
     return res.status(404).json({
@@ -150,11 +150,50 @@ const deleteTour = (req, res) => {
   );
 };
 
+const getAllUsers = (req,res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not definded'
+  })
+}
+
+const createUser = (req,res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not definded'
+  })
+}
+
+const getUser = (req,res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not definded'
+  })
+}
+
+const updateUser = (req,res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not definded'
+  })
+}
+
+const deleteUser = (req,res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not definded'
+  })
+}
+
 // Route
 
 app.route('/api/v1/tours').get(getAllTours).post(createTour);
 
 app.route('/api/v1/tours/:id').get(getTour).put(updateTour).delete(deleteTour);
+
+app.route('/api/v1/users').get(getAllUsers).post(createUser);
+
+app.route('/api/v1/users/:id').get(getUser).put(updateUser).delete(deleteUser);
 
 const port = 3000;
 
