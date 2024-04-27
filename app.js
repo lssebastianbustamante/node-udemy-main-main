@@ -150,50 +150,59 @@ const deleteTour = (req, res) => {
   );
 };
 
-const getAllUsers = (req,res) => {
+const getAllUsers = (req, res) => {
   res.status(500).json({
     status: 'error',
-    message: 'This route is not definded'
-  })
-}
+    message: 'This route is not definded',
+  });
+};
 
-const createUser = (req,res) => {
+const createUser = (req, res) => {
   res.status(500).json({
     status: 'error',
-    message: 'This route is not definded'
-  })
-}
+    message: 'This route is not definded',
+  });
+};
 
-const getUser = (req,res) => {
+const getUser = (req, res) => {
   res.status(500).json({
     status: 'error',
-    message: 'This route is not definded'
-  })
-}
+    message: 'This route is not definded',
+  });
+};
 
-const updateUser = (req,res) => {
+const updateUser = (req, res) => {
   res.status(500).json({
     status: 'error',
-    message: 'This route is not definded'
-  })
-}
+    message: 'This route is not definded',
+  });
+};
 
-const deleteUser = (req,res) => {
+const deleteUser = (req, res) => {
   res.status(500).json({
     status: 'error',
-    message: 'This route is not definded'
-  })
-}
+    message: 'This route is not definded',
+  });
+};
 
-// Route
+// Router Tour
 
-app.route('/api/v1/tours').get(getAllTours).post(createTour);
+const tourRouter = express.Router();
 
-app.route('/api/v1/tours/:id').get(getTour).put(updateTour).delete(deleteTour);
+tourRouter.route('/').get(getAllTours).post(createTour);
 
-app.route('/api/v1/users').get(getAllUsers).post(createUser);
+tourRouter.route('/:id').get(getTour).put(updateTour).delete(deleteTour);
 
-app.route('/api/v1/users/:id').get(getUser).put(updateUser).delete(deleteUser);
+// Router User
+
+const userRouter = express.Router();
+
+userRouter.route('/').get(getAllUsers).post(createUser);
+
+userRouter.route('/:id').get(getUser).put(updateUser).delete(deleteUser);
+
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
 
 const port = 3000;
 
