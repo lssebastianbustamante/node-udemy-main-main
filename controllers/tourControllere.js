@@ -5,9 +5,8 @@ const tours = JSON.parse(
 );
 
 // CheckID
-
 exports.CheckID = (req, res, next, val) => {
-  console.log(`ID: ${val}`)
+  console.log(`ID: ${val}`);
 
   const id = val;
   if (isNaN(id)) {
@@ -31,6 +30,27 @@ exports.CheckID = (req, res, next, val) => {
     });
   }
 
+  next();
+};
+
+// CheckBody
+exports.checkBody = (req, res, next) => {
+  const {name, price } = req.body;
+
+  if (!name || name === "") {
+    return res.status(404).json({
+      status: 'Fail',
+      message: 'Missing Name',
+    });
+  }
+
+  if (!price || isNaN(price)) {
+    
+    return res.status(404).json({
+      status: 'Fail',
+      message: 'Missing Price',
+    });
+  }
   next();
 };
 

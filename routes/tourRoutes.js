@@ -2,6 +2,7 @@ const express = require('express');
 
 const {
   CheckID,
+  checkBody,
   getAllTours,
   createTour,
   getTour,
@@ -13,7 +14,7 @@ const router = express.Router();
 
 router.param('id', CheckID);
 
-router.route('/').get(getAllTours).post(createTour);
+router.route('/').get(getAllTours).post(checkBody, createTour);
 
 router.route('/:id').get(getTour).put(updateTour).delete(deleteTour);
 
