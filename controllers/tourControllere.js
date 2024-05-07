@@ -1,7 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable prefer-object-spread */
+/* eslint-disable node/no-unsupported-features/es-syntax */
+/* eslint-disable no-restricted-globals */
 const fs = require('fs');
 
 const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
+  fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`),
 );
 
 // CheckID
@@ -35,9 +39,9 @@ exports.CheckID = (req, res, next, val) => {
 
 // CheckBody
 exports.checkBody = (req, res, next) => {
-  const {name, price } = req.body;
+  const { name, price } = req.body;
 
-  if (!name || name === "") {
+  if (!name || name === '') {
     return res.status(404).json({
       status: 'Fail',
       message: 'Missing Name',
@@ -45,7 +49,6 @@ exports.checkBody = (req, res, next) => {
   }
 
   if (!price || isNaN(price)) {
-    
     return res.status(404).json({
       status: 'Fail',
       message: 'Missing Price',
@@ -89,7 +92,7 @@ exports.createTour = (req, res) => {
 
   const newTour = Object.assign(
     { id: newId, cratedTime: req.requestTime },
-    req.body
+    req.body,
   );
 
   tours.push(newTour);
@@ -104,7 +107,7 @@ exports.createTour = (req, res) => {
           tour: newTour,
         },
       });
-    }
+    },
   );
 };
 
@@ -135,14 +138,14 @@ exports.updateTour = (req, res) => {
           tour: updatedTour,
         },
       });
-    }
+    },
   );
 };
 
 // DELETE Delete Tour
 exports.deleteTour = (req, res) => {
   const id = req.params.id * 1;
-  const tourExiste = tours.some((x) => x.id == id);
+  const tourExiste = tours.some((x) => x.id === id);
   const deleteTour = tours.filter((el) => el.id !== id);
 
   if (!tourExiste) {
@@ -162,6 +165,6 @@ exports.deleteTour = (req, res) => {
           tour: null,
         },
       });
-    }
+    },
   );
 };
