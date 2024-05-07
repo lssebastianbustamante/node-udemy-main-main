@@ -16,6 +16,6 @@ router.param('id', CheckID);
 
 router.route('/').get(getAllTours).post(checkBody, createTour);
 
-router.route('/:id').get(getTour).put(updateTour).delete(deleteTour);
+router.route('/:id').get(getTour).put(checkBody, updateTour).delete(deleteTour);
 
 module.exports = router;
