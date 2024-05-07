@@ -4,6 +4,36 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
 );
 
+// CheckID
+
+exports.CheckID = (req, res, next, val) => {
+  console.log(`ID: ${val}`)
+
+  const id = val;
+  if (isNaN(id)) {
+    return res.status(404).json({
+      status: 'invalid',
+      message: 'Id is not number',
+    });
+  }
+
+  if (id > tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Ivalid ID',
+    });
+  }
+
+  if (isNaN(id) || id <= 0) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+  }
+
+  next();
+};
+
 // GET All Tours
 exports.getAllTours = (req, res) => {
   res.status(200).json({
@@ -18,15 +48,7 @@ exports.getAllTours = (req, res) => {
 // GET Tour by ID
 exports.getTour = (req, res) => {
   const id = req.params.id * 1;
-
   const tour = tours.find((el) => el.id === id);
-
-  if (isNaN(id)) {
-    return res.status(404).json({
-      status: 'invalid',
-      message: 'Id is not number',
-    });
-  }
   if (!tour) {
     return res.status(404).json({
       status: 'fail',
@@ -102,20 +124,6 @@ exports.deleteTour = (req, res) => {
   const id = req.params.id * 1;
   const tourExiste = tours.some((x) => x.id == id);
   const deleteTour = tours.filter((el) => el.id !== id);
-
-  if (isNaN(id) || id <= 0) {
-    return res.status(400).json({
-      status: 'fail',
-      message: 'Invalid ID',
-    });
-  }
-
-  if (id > tours.length) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Ivalid ID',
-    });
-  }
 
   if (!tourExiste) {
     return res.status(404).json({
