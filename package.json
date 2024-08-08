@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "users:populate": "node dev-data/data/import-dev-data.js --users --import",
+    "users:delete": "node dev-data/data/import-dev-data.js --users --delete",
+    "tours:populate": "node dev-data/data/import-dev-data.js --tours --import",
+    "tours:delete": "node dev-data/data/import-dev-data.js --tours --delete"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +18,8 @@
     "express": "^4.19.2",
     "mongoose": "^8.3.4",
     "morgan": "^1.10.0",
-    "slugify": "^1.6.6"
+    "slugify": "^1.6.6",
+    "validator": "^13.12.0"
   },
   "devDependencies": {
     "eslint": "^8.57.0",

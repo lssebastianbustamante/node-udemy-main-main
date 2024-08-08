@@ -1,4 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
+// Este modelo nos permite definir la esturctura a guardar en la base de datos
+
 const mongoose = require('mongoose');
 
 const emailRegex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,}$/;
@@ -6,10 +8,6 @@ const emailRegex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,}$/;
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-  },
-  age: {
-    type: Number,
     required: true,
   },
   email: {
@@ -23,9 +21,20 @@ const userSchema = new mongoose.Schema({
       message: 'Email invalid',
     },
   },
-  document: {
-    type: Number,
-    required: true,
+  role: {
+    type: String,
+    require: true,
+  },
+  active: {
+    type: Boolean,
+    require: true,
+  },
+  photo: {
+    type: String,
+  },
+  password: {
+    type: String,
+    require: true,
   },
 });
 

@@ -39,7 +39,7 @@ exports.getAllUsers = async (req, res) => {
     });
   } catch (err) {
     res.status(404).json({
-      status: 'fail',
+      status: 'fail get all tours',
       message: err,
     });
   }
@@ -48,7 +48,7 @@ exports.getAllUsers = async (req, res) => {
 exports.createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
-
+    console.log(user);
     res.status(200).json({
       status: 'success',
       data: {
