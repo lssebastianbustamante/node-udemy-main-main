@@ -2,18 +2,31 @@
   "name": "express-api",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "node/no-unsupported-features/es-syntax": [
+    "error",
+    {
+      "version": ">=8.0.0",
+      "ignores": []
+    }
+  ],
   "scripts": {
     "start": "nodemon server.js",
+    "start:prod": "cross-env NODE_ENV=production nodemon server.js",
     "users:populate": "node dev-data/data/import-dev-data.js --users --import",
     "users:delete": "node dev-data/data/import-dev-data.js --users --delete",
     "tours:populate": "node dev-data/data/import-dev-data.js --tours --import",
-    "tours:delete": "node dev-data/data/import-dev-data.js --tours --delete"
+    "tours:delete": "node dev-data/data/import-dev-data.js --tours --delete",
+    "debug": "ndb server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongoose": "^8.3.4",
